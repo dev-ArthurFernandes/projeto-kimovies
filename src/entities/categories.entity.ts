@@ -4,7 +4,7 @@ import {
     Column,
     OneToMany
 } from 'typeorm';
-import RealEstate from "./real_estate.entity";
+import RealEstate from "./realEstate.entity";
 
 @Entity('categories')
 class Category {

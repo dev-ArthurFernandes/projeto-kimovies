@@ -1,12 +1,11 @@
-import { 
-    Entity,
+import {
     Column,
+    Entity,
+    ManyToOne,
     PrimaryGeneratedColumn,
-    ManyToOne
-} from 'typeorm';
-import RealEstate from './real_estate.entity';
-import  User from './user.entity';
-
+} from 'typeorm'
+import RealEstate from './realEstate.entity'
+import User from './user.entity'
 @Entity('schedules')
 class Schedule {
 
