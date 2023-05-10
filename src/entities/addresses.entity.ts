@@ -2,8 +2,10 @@ import {
     BeforeInsert,
     Column,
     Entity,
+    OneToOne,
     PrimaryGeneratedColumn
 } from 'typeorm'
+import RealEstate from './real_estate.entity'
 
 @Entity('addresses')
 class Addresses{
@@ -32,6 +34,9 @@ class Addresses{
         this.street = this.street.toLocaleLowerCase()
         this.city = this.city.toLocaleLowerCase()
     }
+
+    @OneToOne(() => RealEstate)
+    realEstate: RealEstate
 }
 
 export default Addresses

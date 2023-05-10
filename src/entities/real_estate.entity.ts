@@ -2,11 +2,17 @@ import {
     BeforeInsert,
     Column,
     Entity,
+    JoinColumn,
+    ManyToMany,
+    OneToOne,
     PrimaryGeneratedColumn
 } from 'typeorm'
+import Addresses from './addresses.entity'
+import Category from './categories.entity'
+import Schedules from './schedules.entity'
 
 @Entity('real_state')
-class RealState{
+class RealEstate{
 
     @PrimaryGeneratedColumn('increment')
     id: number
@@ -31,7 +37,17 @@ class RealState{
         this.createdAt = new Date()
         this.updatedAt = new Date()
     }
-    
+
+    @ManyToMany(() => Schedules, (schedule) => schedule.realEstates)
+    schedules: Schedules
+
+    @OneToOne(() => Addresses)
+    @JoinColumn()
+    Address: Addresses
+
+    @OneToOne(() => Category)
+    @JoinColumn()
+    categories: Category
 }
 
-export default RealState
+export default RealEstate

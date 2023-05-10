@@ -3,8 +3,11 @@ import {
     BeforeUpdate,
     Column,
     Entity,
+    ManyToMany,
+    OneToMany,
     PrimaryGeneratedColumn
 } from 'typeorm';
+import Schedules from './schedules.entity';
 
 @Entity('users')
 class Users{
@@ -43,6 +46,9 @@ class Users{
     changeUpdateDate(){
         this.updatedAt = new Date()
     }
+
+    @ManyToMany(() => Schedules, schedule => schedule.users)
+    schedules: Schedules
 }
 
 export default Users
