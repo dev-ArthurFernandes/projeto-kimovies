@@ -1,53 +1,49 @@
 import {
-    BeforeInsert,
     Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
     Entity,
-    JoinColumn,
-    ManyToMany,
     OneToOne,
-    PrimaryGeneratedColumn
-} from 'typeorm'
-import Addresses from './addresses.entity'
-import Category from './categories.entity'
-import Schedules from './schedules.entity'
-
-@Entity('real_state')
-class RealEstate{
-
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+} from 'typeorm';
+import Addresses from './adresses.entity';
+import Category from './categories.entity';
+import Schedule from './schedules.entity';
+  
+@Entity('real_estate')
+class RealEstate {
+    
     @PrimaryGeneratedColumn('increment')
     id: number
 
-    @Column({ type: 'boolean', default: false})
+    @Column({ type: 'boolean', default: false })
     sold: boolean
 
-    @Column({ type: 'decimal', precision: 12, scale: 2, default: "0"})
-    value: string
+    @Column({ type: 'decimal', precision: 12, scale: 2, default: 0 })
+    value: number | string
 
-    @Column({ type: 'integer'})
+    @Column({ type: 'integer' })
     size: number
 
-    @Column({ type: 'date'})
-    createdAt: Date
+    @CreateDateColumn({ type: 'date' })
+    createdAt: string
 
-    @Column({ type: 'date'})
-    updatedAt: Date
-
-    @BeforeInsert()
-    insertDate(){
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
-
-    @ManyToMany(() => Schedules, (schedule) => schedule.realEstates)
-    schedules: Schedules
+    @UpdateDateColumn({ type: 'date' })
+    updatedAt: string
 
     @OneToOne(() => Addresses)
     @JoinColumn()
-    Address: Addresses
+    address: Addresses
 
-    @OneToOne(() => Category)
-    @JoinColumn()
-    categories: Category
+    @ManyToOne(() => Category, (category) => category.realEstate)
+    category: Category
+
+    @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
+    schedules: Schedule[]
+
 }
 
-export default RealEstate
+export default RealEstate 

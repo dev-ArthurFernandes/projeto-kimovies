@@ -1,54 +1,67 @@
+import { getRounds, hashSync } from 'bcryptjs';
 import {
-    BeforeInsert,
-    BeforeUpdate,
-    Column,
-    Entity,
-    ManyToMany,
-    OneToMany,
-    PrimaryGeneratedColumn
+  Column,
+  PrimaryGeneratedColumn,
+  Entity,
+  CreateDateColumn,
+  DeleteDateColumn,
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  OneToMany,
+  AfterLoad,
 } from 'typeorm';
-import Schedules from './schedules.entity';
+import Schedule from './schedules.entity';
 
 @Entity('users')
-class Users{
+class User{
 
     @PrimaryGeneratedColumn('increment')
     id: number
 
-    @Column({ type: 'varchar', length: 45})
+    @Column({ type: 'varchar', length: 45 })
     name: string
 
-    @Column({ type: 'varchar', length: 45, unique: true})
+    @Column({ type: 'varchar', length: 45, unique: true })
     email: string
 
-    @Column({ type: 'varchar', length: 120})
-    password: string
-
-    @Column({ type: 'boolean', default: false})
+    @Column({ type: 'boolean', default: false })
     admin: boolean
 
-    @Column({ type: 'date'})
-    createdAt: Date
+    @Column({ type: 'varchar', length: 120 })
+    password: string
 
-    @Column({ type: 'date'})
-    updatedAt: Date
+    @CreateDateColumn({ type: 'date' })
+    createdAt: string
 
-    @Column({ type: 'date', nullable: true})
-    deletedAt: Date | null | undefined
+    @UpdateDateColumn({ type: 'date' })
+    updatedAt: string
+
+    @DeleteDateColumn({ type: 'date', nullable: true })
+    deletedAt: string | undefined | null
+
+    @OneToMany(() => Schedule, (schedules) => schedules.user)
+    schedules: Schedule[]
+
 
     @BeforeInsert()
-    insertDate(){
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
-
     @BeforeUpdate()
-    changeUpdateDate(){
-        this.updatedAt = new Date()
+    verifyEntries() {
+        this.name = this.name.toLocaleLowerCase()
+        this.email = this.email.toLocaleLowerCase()
+
+        const encrypted = getRounds(this.password);
+
+        if (!encrypted) {
+            this.password = hashSync(this.password, 10);
+        }
     }
 
-    @ManyToMany(() => Schedules, schedule => schedule.users)
-    schedules: Schedules
+    @AfterLoad()
+    turnUp(){
+        this.name = this.name.split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).toString().replaceAll(',',' ')
+    }
+
 }
 
-export default Users
+export default User
