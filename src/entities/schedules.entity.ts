@@ -7,7 +7,7 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn
 } from 'typeorm'
-import RealEstate from './real_estate.entity'
+import RealEstate from './realEstate.entity'
 import Users from './user.entity'
 
 @Entity('schedules')
