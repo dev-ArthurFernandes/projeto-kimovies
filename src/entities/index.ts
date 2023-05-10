@@ -1,13 +1,14 @@
-import Addresses from "./addresses.entity";
-import Category from "./categories.entity";
+import User from "./user.entity";
 import RealEstate from "./real_estate.entity";
-import Schedules from "./schedules.entity";
-import Users from "./user.entity";
+import Schedule from "./schedules.entity";
+import Addresses from "./adresses.entity";
+import Category from "./categories.entity";
+
 
 export {
-    Users,
-    Addresses,
-    Schedules,
+    User,
     RealEstate,
+    Schedule,
+    Addresses,
     Category
 };

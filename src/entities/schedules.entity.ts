@@ -1,35 +1,30 @@
-import {
-    Column,
+import { 
     Entity,
-    JoinColumn,
-    JoinTable,
-    ManyToMany,
-    ManyToOne,
-    PrimaryGeneratedColumn
-} from 'typeorm'
-import RealEstate from './real_estate.entity'
-import Users from './user.entity'
+    Column,
+    PrimaryGeneratedColumn,
+    ManyToOne
+} from 'typeorm';
+import RealEstate from './real_estate.entity';
+import  User from './user.entity';
 
 @Entity('schedules')
-class Schedules{
+class Schedule {
 
     @PrimaryGeneratedColumn('increment')
     id: number
 
-    @Column({ type: 'date'})
-    date: Date
+    @Column({ type: 'date' })
+    date: string
 
-    @Column({ type: 'time'})
+    @Column({ type: 'time' })
     hour: string
 
-    @ManyToMany(() => Users, user => user.schedules)
-    @JoinTable()
-    users: Users[]
+    @ManyToOne(() => RealEstate, (realEstate) => realEstate.schedules)
+    realEstate: RealEstate
 
-    @ManyToMany(() => RealEstate, realEstate => realEstate.schedules)
-    @JoinTable()
-    realEstates: RealEstate[]
-
+    @ManyToOne(() => User, (user) => user.schedules)
+    user: User
+    
 }
 
-export default Schedules
+export default Schedule
