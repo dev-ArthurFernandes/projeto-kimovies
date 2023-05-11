@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { updateUserService } from '../../services/users';
+import { updateUserService } from '../../services';
 import { IUserUpdateRequest } from '../../interfaces';
 
 

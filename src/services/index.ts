@@ -1,5 +1,8 @@
 import {
-    createUserService
+    createUserService,
+    listAllUsersService,
+    updateUserService,
+    deleteUserService
 } from './users'
 
 
@@ -9,5 +12,8 @@ import loginService from "./login/loginUser.service";
 
 export {
     createUserService,
-    loginService
+    loginService,
+    listAllUsersService,
+    updateUserService,
+    deleteUserService
 }
