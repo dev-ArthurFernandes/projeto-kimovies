@@ -1,7 +1,8 @@
 import {
     CreateUserSchema,
     UserSchema,
-    UpdateUserSchema
+    UpdateUserSchema,
+    UserResponseSchema
 } from './users.schemas'
 import {
     RealEstateSchema,
@@ -23,5 +24,6 @@ export {
     CreateAddressesSchema,
     AddressesSchema,
     CreateRealEstateSchema,
-    CategorySchema
+    CategorySchema,
+    UserResponseSchema
 }
