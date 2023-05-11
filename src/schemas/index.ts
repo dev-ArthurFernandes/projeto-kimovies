@@ -15,7 +15,9 @@ import {
 import {
     CategorySchema
 } from './categories.schemas'
-
+import {
+    LoginSchema
+} from './login.schemas'
 export {
     CreateUserSchema,
     UserSchema,
@@ -25,5 +27,6 @@ export {
     AddressesSchema,
     CreateRealEstateSchema,
     CategorySchema,
-    UserResponseSchema
+    UserResponseSchema,
+    LoginSchema
 }

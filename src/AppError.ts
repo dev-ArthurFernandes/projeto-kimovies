@@ -15,13 +15,13 @@ const handleErrors = ( err: Error, req: Request,res: Response, next: NextFunctio
 
     if (err instanceof AppError) {
         return res.status(err.statusCode).json({
-        message: err.message,
+            message: err.message,
         });
     }
 
     if (err instanceof ZodError) {
         return res.status(400).json({
-        message: err.flatten().fieldErrors,
+            message: err.flatten().fieldErrors,
         });
     }
 

@@ -13,9 +13,9 @@ const CreateUserSchema = z.object({
 
 const UserSchema = CreateUserSchema.extend({
     id: z.number(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
-    deletedAt: z.date().nullish()
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    deletedAt: z.string().nullish()
 })
 
 const UpdateUserSchema = z.object({
