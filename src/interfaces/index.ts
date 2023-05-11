@@ -1,6 +1,7 @@
 import {
     IUser,
     IUserRequest,
+    IUserUpdateRequest,
     IUserResponse
 } from './users.interfaces'
 import {
@@ -10,6 +11,7 @@ import {
 export {
     IUser,
     IUserRequest,
+    IUserUpdateRequest,
     IUserResponse,
     ILogin
 }

@@ -47,8 +47,8 @@ class User{
     @BeforeInsert()
     @BeforeUpdate()
     verifyEntries() {
-        this.name = this.name.toLocaleLowerCase()
-        this.email = this.email.toLocaleLowerCase()
+        this.name = this.name.toLowerCase()
+        this.email = this.email.toLowerCase()
 
         const encrypted = getRounds(this.password);
 
