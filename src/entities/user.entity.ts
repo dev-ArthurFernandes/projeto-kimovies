@@ -32,13 +32,13 @@ class User{
     password: string
 
     @CreateDateColumn({ type: 'date' })
-    createdAt: string
+    createdAt: Date
 
     @UpdateDateColumn({ type: 'date' })
-    updatedAt: string
+    updatedAt: Date
 
     @DeleteDateColumn({ type: 'date', nullable: true })
-    deletedAt: string | undefined | null
+    deletedAt: Date | undefined | null
 
     @OneToMany(() => Schedule, (schedules) => schedules.user)
     schedules: Schedule[]

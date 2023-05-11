@@ -24,8 +24,11 @@ const UpdateUserSchema = z.object({
     password: z.string().max(120).transform((pass) => hashSync(pass, 10)).optional()
 })
 
+const UserResponseSchema = UserSchema.omit({password: true})
+
 export {
     CreateUserSchema,
     UserSchema,
-    UpdateUserSchema
+    UpdateUserSchema,
+    UserResponseSchema
 }
