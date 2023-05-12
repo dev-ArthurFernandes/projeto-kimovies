@@ -47,15 +47,12 @@ class User{
     @BeforeInsert()
     @BeforeUpdate()
     verifyEntries() {
-        this.name = this.name.toLowerCase()
         this.email = this.email.toLowerCase()
 
-        const encrypted = getRounds(this.password);
-
-        if (!encrypted) {
-            this.password = hashSync(this.password, 10);
-        }
+        this.password = hashSync(this.password, 10)
     }
+
+    
 
     @AfterLoad()
     turnUp(){

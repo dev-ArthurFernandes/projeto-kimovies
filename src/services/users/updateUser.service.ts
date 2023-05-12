@@ -1,4 +1,4 @@
-import { IUser, IUserResponse, IUserUpdateRequest } from '../../interfaces';
+import { IUser, IUserResponse } from '../../interfaces';
 import { userRepo } from '../../repositories';
 import { UserResponseSchema } from '../../schemas';
 

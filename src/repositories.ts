@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "./data-source";
 import {
-    Addresses,
+    Address,
     Category,
     RealEstate,
     Schedule,
@@ -11,7 +11,7 @@ import {
 
 const userRepo: Repository<User> = AppDataSource.getRepository(User)
 
-const addresssesRepo: Repository<Addresses> = AppDataSource.getRepository(Addresses)
+const addresssesRepo: Repository<Address> = AppDataSource.getRepository(Address)
 
 const schedulesRepo: Repository<Schedule> = AppDataSource.getRepository(Schedule)
 
