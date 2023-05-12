@@ -15,7 +15,7 @@ const loginService = async (payload: ILogin): Promise<string> => {
         throw new AppError("Invalid credentials", 401)
     }
     
-    const mathPassword = compare(user.password, payload.password)
+    const mathPassword = await compare(payload.password, user.password)
 
     if(!mathPassword){
         throw new AppError("Invalid credentials", 401)
