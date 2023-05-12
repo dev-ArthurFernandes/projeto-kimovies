@@ -6,6 +6,9 @@ const CategorySchema = z.object({
     name: z.string().max(45)
 })
 
+const CreateCategorySchema = CategorySchema.omit({ id: true })
+
 export {
-    CategorySchema
+    CategorySchema,
+    CreateCategorySchema
 }

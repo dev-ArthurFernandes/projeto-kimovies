@@ -13,7 +13,8 @@ import {
     CreateAddressesSchema
 } from './addresses.schemas'
 import {
-    CategorySchema
+    CategorySchema,
+    CreateCategorySchema
 } from './categories.schemas'
 import {
     LoginSchema
@@ -27,6 +28,7 @@ export {
     AddressesSchema,
     CreateRealEstateSchema,
     CategorySchema,
+    CreateCategorySchema,
     UserResponseSchema,
     LoginSchema
 }
