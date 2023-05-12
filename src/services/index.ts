@@ -1,6 +1,19 @@
-import createUserService from "./users/createUser.services";
+import {
+    createUserService,
+    listAllUsersService,
+    updateUserService,
+    deleteUserService
+} from './users'
 
+
+
+
+import loginService from "./login/loginUser.service";
 
 export {
-    createUserService
+    createUserService,
+    loginService,
+    listAllUsersService,
+    updateUserService,
+    deleteUserService
 }

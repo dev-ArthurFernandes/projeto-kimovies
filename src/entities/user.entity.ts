@@ -32,13 +32,13 @@ class User{
     password: string
 
     @CreateDateColumn({ type: 'date' })
-    createdAt: Date
+    createdAt: string
 
     @UpdateDateColumn({ type: 'date' })
-    updatedAt: Date
+    updatedAt: string
 
     @DeleteDateColumn({ type: 'date', nullable: true })
-    deletedAt: Date | undefined | null
+    deletedAt: string | undefined | null
 
     @OneToMany(() => Schedule, (schedules) => schedules.user)
     schedules: Schedule[]
@@ -47,15 +47,12 @@ class User{
     @BeforeInsert()
     @BeforeUpdate()
     verifyEntries() {
-        this.name = this.name.toLocaleLowerCase()
-        this.email = this.email.toLocaleLowerCase()
+        this.email = this.email.toLowerCase()
 
-        const encrypted = getRounds(this.password);
-
-        if (!encrypted) {
-            this.password = hashSync(this.password, 10);
-        }
+        this.password = hashSync(this.password, 10)
     }
+
+    
 
     @AfterLoad()
     turnUp(){

@@ -7,7 +7,7 @@ const createUserController = async ( req: Request, res: Response): Promise<Respo
 
     const user: IUserResponse = await createUserService(req.body)
 
-    return res.json(user)
+    return res.status(201).json(user)
 }
 
 export default createUserController

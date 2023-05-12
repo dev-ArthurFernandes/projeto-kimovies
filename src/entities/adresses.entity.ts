@@ -8,7 +8,7 @@ import {
 import RealEstate from './realEstate.entity'
 
 @Entity('addresses')
-class Addresses{
+class Address{
 
     @PrimaryGeneratedColumn('increment')
     id: number
@@ -39,4 +39,4 @@ class Addresses{
     realEstate: RealEstate
 }
 
-export default Addresses
+export default Address
