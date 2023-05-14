@@ -5,9 +5,16 @@ import {
     deleteUserController
 } from './user'
 
+import {
+    createRealEstateController,
+    listAllRealEstateController
+} from './realEstate'
+
 export {
     createUserController,
     listAllUsersController,
     updateUserController,
-    deleteUserController
+    deleteUserController,
+    createRealEstateController,
+    listAllRealEstateController
 }

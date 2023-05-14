@@ -1,13 +1,21 @@
-import { Router } from "express";
-import { createRealEstateController } from "../controllers/realEstate";
-import { ensureDate } from "../middlewares";
-import { CreateRealEstateSchema } from "../schemas";
-import adminPermission from "../middlewares/AdminPermission.middleware";
+import * as Express from "express";
+import {
+    createRealEstateController,
+    listAllUsersController
+} from "../controllers";
+import {
+    ensureDate,
+    validedToken
+} from "../middlewares";
+import {
+    RealEstateRequestSchema
+} from "../schemas";
 
 
-const realEstateRouter = Router()
+const realEstateRouter = Express.Router()
 
-realEstateRouter.post('', adminPermission, ensureDate(CreateRealEstateSchema), createRealEstateController)
+realEstateRouter.post('', validedToken, ensureDate(RealEstateRequestSchema), createRealEstateController)
+realEstateRouter.get('', listAllUsersController)
 
 
 export default realEstateRouter

@@ -1,24 +1,32 @@
 import { z } from 'zod';
-import { AddressesSchema } from './addresses.schemas';
-import { CategorySchema } from './categories.schemas';
+import { AddressRequestSchemas, AddressResponseSchemas } from './addresses.schemas';
+import { CategoryResponseSchemas } from './categories.schemas';
 
-
-const RealEstateSchema = z.object({
-    sold: z.boolean(),
-    value: z.number().or(z.string()),
-    size: z.number().or(z.string()),
-    createdAt: z.date(),
-    updatedAt: z.date(),
-    address: AddressesSchema,
-    category: CategorySchema
+const RealEstateRequestSchema = z.object({
+	value: z.number().min(-9999999999.99).max(9999999999.99).or(z.string()),
+	size: z.number().int().positive(),
+	address: AddressRequestSchemas,
+	categoryId: z.number()
 })
 
-const CreateRealEstateSchema = RealEstateSchema.omit({
-    createdAt: true,
-    updatedAt: true
+const RealEstateResponseSchema = RealEstateRequestSchema.omit({ categoryId: true }).extend({
+    id: z.number(),
+	address: AddressResponseSchemas,
+	category: CategoryResponseSchemas,
+	sold: z.boolean(),
+	createdAt: z.string(),
+	updatedAt: z.string()
+})
+
+const RealEstatesListSchema = z.array(RealEstateResponseSchema.omit({ address: true, category: true }))
+
+const RealEstateByCategorySchema = CategoryResponseSchemas.extend({
+	realEstate: RealEstatesListSchema
 })
 
 export {
-    RealEstateSchema,
-    CreateRealEstateSchema
+    RealEstateByCategorySchema,
+    RealEstateRequestSchema,
+    RealEstatesListSchema,
+    RealEstateResponseSchema
 }

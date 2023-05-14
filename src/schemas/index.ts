@@ -1,34 +1,45 @@
 import {
-    CreateUserSchema,
-    UserSchema,
-    UpdateUserSchema,
-    UserResponseSchema
-} from './users.schemas'
-import {
-    RealEstateSchema,
-    CreateRealEstateSchema
-} from './realEstate.schemas'
-import {
-    AddressesSchema,
-    CreateAddressesSchema
+    AddressRequestSchemas,
+    AddressResponseSchemas
 } from './addresses.schemas'
+
 import {
-    CategorySchema,
-    CreateCategorySchema
+    CategoriesSchemas,
+    CategoryRequestSchema,
+    CategoryResponseSchemas
 } from './categories.schemas'
+
 import {
-    LoginSchema
-} from './login.schemas'
-export {
-    CreateUserSchema,
-    UserSchema,
+  RealEstateByCategorySchema,
+  RealEstateRequestSchema,
+  RealEstateResponseSchema,
+  RealEstatesListSchema,
+} from './realEstate.schemas'
+
+import {
     UpdateUserSchema,
-    RealEstateSchema,
-    CreateAddressesSchema,
-    AddressesSchema,
-    CreateRealEstateSchema,
-    CategorySchema,
-    CreateCategorySchema,
+    UserResponseListSchema,
     UserResponseSchema,
-    LoginSchema
+    UserSchema,
+    CreateUserSchema
+} from './users.schemas'
+
+import { LoginSchema } from './login.schemas'
+
+export {
+    AddressRequestSchemas,
+    AddressResponseSchemas,
+    CategoriesSchemas,
+    CategoryRequestSchema,
+    CategoryResponseSchemas,
+    RealEstateByCategorySchema,
+    RealEstateRequestSchema,
+    RealEstateResponseSchema,
+    RealEstatesListSchema,
+    UpdateUserSchema,
+    UserResponseListSchema,
+    UserResponseSchema,
+    UserSchema,
+    LoginSchema,
+    CreateUserSchema
 }

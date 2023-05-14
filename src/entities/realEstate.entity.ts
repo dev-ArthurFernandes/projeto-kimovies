@@ -8,6 +8,7 @@ import {
     JoinColumn,
     ManyToOne,
     OneToMany,
+    NumericType,
 } from 'typeorm';
 import Addresses from './adresses.entity';
 import Category from './categories.entity';
@@ -23,10 +24,10 @@ class RealEstate {
     sold: boolean
 
     @Column({ type: 'decimal', precision: 12, scale: 2, default: 0 })
-    value: number
+    value: string | number
 
     @Column({ type: 'integer' })
-    size: number
+    size: number | string
 
     @CreateDateColumn({ type: 'date' })
     createdAt: string

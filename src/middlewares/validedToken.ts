@@ -4,7 +4,7 @@ import { verify } from "jsonwebtoken";
 
 
 
-const adminPermission = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+const validedToken = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
     const token: string | undefined = req.headers.authorization?.split(' ')[1]
 
@@ -12,7 +12,8 @@ const adminPermission = async (req: Request, res: Response, next: NextFunction):
         throw new AppError("Missing bearer token", 401)
     }
 
-    verify(token, String(process.env.SERCRET_KEY), (err, decoded: any) => {
+    verify(token, String(process.env.SECRET_KEY), (err, decoded: any) => {
+        
         if(err){
             throw new AppError(err.message, 401)
         }
@@ -26,4 +27,4 @@ const adminPermission = async (req: Request, res: Response, next: NextFunction):
     return next()
 }
 
-export default adminPermission
+export default validedToken

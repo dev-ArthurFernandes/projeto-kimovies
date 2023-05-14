@@ -1,14 +1,17 @@
 import { z } from 'zod';
 
-
-const CategorySchema = z.object({
-    id: z.number(),
-    name: z.string().max(45)
+const CategoryRequestSchema = z.object({
+	name: z.string().max(45)
 })
 
-const CreateCategorySchema = CategorySchema.omit({ id: true })
+const CategoryResponseSchemas = CategoryRequestSchema.extend({
+	id: z.number()
+})
+
+const CategoriesSchemas = CategoryResponseSchemas.array()
 
 export {
-    CategorySchema,
-    CreateCategorySchema
+    CategoriesSchemas,
+    CategoryResponseSchemas,
+    CategoryRequestSchema
 }

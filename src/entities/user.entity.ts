@@ -47,16 +47,7 @@ class User{
     @BeforeInsert()
     @BeforeUpdate()
     verifyEntries() {
-        this.email = this.email.toLowerCase()
-
         this.password = hashSync(this.password, 10)
-    }
-
-    
-
-    @AfterLoad()
-    turnUp(){
-        this.name = this.name.split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).toString().replaceAll(',',' ')
     }
 
 }

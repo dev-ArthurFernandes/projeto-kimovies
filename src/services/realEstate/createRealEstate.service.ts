@@ -1,34 +1,63 @@
+import { Address, RealEstate } from "../../entities";
 import { AppError } from "../../AppError";
-import { IAddressesRequest, ICategory } from "../../interfaces";
-import { IRealEstate } from "../../interfaces/realEstate.interfaces";
+import { IAddresses, IRealEstate, IRealEstateRequest } from "../../interfaces";
 import { addresssesRepo, categoryRepo, realEstateRepo } from "../../repositories";
-import { RealEstateSchema } from "../../schemas";
+import { RealEstateRequestSchema } from "../../schemas";
 
+const createRealEstateService = async ( payload: IRealEstateRequest): Promise<RealEstate> => {
+  
+    const { number, city, state, street, zipCode } = payload.address;
 
-const createRealEstateService = async (payload: any): Promise<IRealEstate> => {
+    if (number) {
+        const validdAddress: Address | null = await addresssesRepo.findOneBy({
+        city: city,
+        number: number,
+        state: state,
+        street: street,
+        zipCode: zipCode,
+        })
 
-    const address: IAddressesRequest = payload.address
-
-    const category: ICategory | null= await categoryRepo.findOneBy({id: payload.category})
-
-    if(!category){
-        throw new AppError('Category not found', 404)
+        if (validdAddress) {
+        throw new AppError("Address already exists", 409)
+        }
     }
 
-    const newAddress = addresssesRepo.create({
-        ...address
-    })
+    let category
 
-    await addresssesRepo.save(newAddress)
+    if (payload.categoryId) {
+        category = await categoryRepo.findOneBy({
+        id: payload.categoryId,
+        })
 
-    const newRealEstate = realEstateRepo.create({
-        ...payload,
-        address: newAddress,
-        category: category
-    })
+        if (!category) {
+        throw new AppError("Category not Found.", 404)
+        }
+    }
 
-    return RealEstateSchema.parse(newRealEstate)
+    const address: IAddresses = addresssesRepo.create(payload.address)
+    const createAddress: Address = await addresssesRepo.save(address)
 
+    const newEstate: IRealEstateRequest = RealEstateRequestSchema.parse(payload)
+
+    if (category) {
+        const estate: IRealEstate = realEstateRepo.create({
+        ...newEstate,
+        address: { ...createAddress },
+        category: category,
+        });
+
+        const createdRealEstate: RealEstate = await realEstateRepo.save(estate)
+
+        return createdRealEstate;
+    } else {
+        const estate: IRealEstate = realEstateRepo.create({
+        ...newEstate,
+        address: { ...createAddress },
+        });
+        const createdRealEstate: RealEstate = await realEstateRepo.save(estate)
+
+        return createdRealEstate
+    }
 }
 
 export default createRealEstateService

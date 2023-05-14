@@ -28,7 +28,7 @@ const loginService = async (payload: ILogin): Promise<string> => {
     },String(process.env.SECRET_KEY),{
 
         expiresIn: '12h',
-        subject: String(user.id)
+        subject: user.id.toString()
     })
 
     return token
