@@ -10,11 +10,18 @@ import {
     listAllRealEstateController
 } from './realEstate'
 
+import {
+    listAllCategoriesController,
+    createCategoryController
+} from './category'
+
 export {
     createUserController,
     listAllUsersController,
     updateUserController,
     deleteUserController,
     createRealEstateController,
-    listAllRealEstateController
+    listAllRealEstateController,
+    listAllCategoriesController,
+    createCategoryController
 }
