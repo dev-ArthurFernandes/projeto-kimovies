@@ -1,12 +1,19 @@
-import { z } from 'zod';
-import { RealEstateSchema } from './realEstate.schemas';
-import { UserSchema } from './users.schemas';
+import { z } from "zod";
 
-
-const SchedulSchema = z.object({
-    id: z.number(),
-    date: z.date(),
+const ScheduleResponseSchema = z.object({
+    id: z.number().positive().int(),
+    date: z.string(),
     hour: z.string(),
-    realEstateId: RealEstateSchema,
-    user: UserSchema
-})
+    realEstateId: z.number().int(),
+    userId: z.number().int().positive(),
+});
+
+const ScheduleRequestSchema = ScheduleResponseSchema.omit({
+    id: true,
+    userId: true,
+});
+
+export {
+    ScheduleRequestSchema,
+    ScheduleResponseSchema
+}

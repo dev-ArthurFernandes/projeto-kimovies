@@ -20,9 +20,12 @@ const UpdateUserSchema = CreateUserSchema.omit({admin: true}).deepPartial()
 
 const UserResponseSchema = UserSchema.omit({password: true})
 
+const UserResponseListSchema = UserResponseSchema.array()
+
 export {
     CreateUserSchema,
     UserSchema,
     UpdateUserSchema,
-    UserResponseSchema
+    UserResponseSchema,
+    UserResponseListSchema
 }

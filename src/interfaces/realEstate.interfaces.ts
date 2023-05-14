@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { CreateRealEstateSchema, RealEstateSchema } from '../schemas';
+import { CreateRealEstateSchema, RealEstateSchema,  } from '../schemas';
 
 
 type IRealEstate = z.infer<typeof RealEstateSchema>

@@ -5,6 +5,9 @@ import {
     deleteUserService
 } from './users'
 
+import {
+    createRealEstateService
+} from './realEstate'
 
 
 
@@ -15,5 +18,6 @@ export {
     loginService,
     listAllUsersService,
     updateUserService,
-    deleteUserService
+    deleteUserService,
+    createRealEstateService
 }
