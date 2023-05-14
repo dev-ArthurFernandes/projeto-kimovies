@@ -2,10 +2,12 @@ import validateId from "./validateId.middleware";
 import ensureDate from "./ensureData.middlewares";
 import verifyEmail from "./verifyEmail.middlewares";
 import validedToken from "./validedToken";
+import verifyCategoryName from "./verifyCategoryName.middleware";
 
 export {
     validateId,
     ensureDate,
     verifyEmail,
-    validedToken
+    validedToken,
+    verifyCategoryName
 }

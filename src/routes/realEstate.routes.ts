@@ -1,7 +1,7 @@
 import * as Express from "express";
 import {
     createRealEstateController,
-    listAllUsersController
+    listAllRealEstateController
 } from "../controllers";
 import {
     ensureDate,
@@ -15,7 +15,7 @@ import {
 const realEstateRouter = Express.Router()
 
 realEstateRouter.post('', validedToken, ensureDate(RealEstateRequestSchema), createRealEstateController)
-realEstateRouter.get('', listAllUsersController)
+realEstateRouter.get('', listAllRealEstateController)
 
 
 export default realEstateRouter

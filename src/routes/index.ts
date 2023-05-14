@@ -11,6 +11,6 @@ const router = Router()
 router.use('/users', userRouter)
 router.use('/login', loginRouter)
 router.use('/realEstate', realEstateRouter)
-router.use('/category', categoryRouter)
+router.use('/categories', categoryRouter)
 
 export default router

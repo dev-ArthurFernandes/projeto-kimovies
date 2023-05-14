@@ -6,10 +6,14 @@ import {
 } from './users'
 
 import {
-    createRealEstateService
+    createRealEstateService,
+    listAllRealEsateService
 } from './realEstate'
 
-
+import {
+    createCategoryService,
+    listAllCategoriesService
+} from './category'
 
 import loginService from "./login/loginUser.service";
 
@@ -19,5 +23,8 @@ export {
     listAllUsersService,
     updateUserService,
     deleteUserService,
-    createRealEstateService
+    createRealEstateService,
+    createCategoryService,
+    listAllCategoriesService,
+    listAllRealEsateService
 }
