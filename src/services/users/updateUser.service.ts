@@ -1,19 +1,26 @@
-import { IUser, IUserResponse } from '../../interfaces';
-import { userRepo } from '../../repositories';
-import { UserResponseSchema } from '../../schemas';
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities";
+import { AppError } from "../../AppError";
+import { IUser, IUserResponse, IUserUpdateRequest } from "../../interfaces";
+import { UserResponseSchema } from "../../schemas";
 
-const updateUserService = async (userId: number, payload: any): Promise<IUserResponse> => {
-	
-	const oldUser: IUser | null= await userRepo.findOneBy({ id: userId})
-	
-	const newUser = userRepo.create({
-        ...oldUser,
-        ...payload
+const updateUserService = async (payload: any, userId: number ): Promise<IUserResponse> => {
+
+    delete payload.admin
+
+    const userRepo = AppDataSource.getRepository(User);
+
+    const userData: User | null = await userRepo.findOneBy({
+        id: userId
     })
-	
-	await userRepo.save(newUser)
 
-    return UserResponseSchema.parse(newUser)
+    const updateUsers = userRepo.create({...userData, ...payload })
+
+    await userRepo.save(updateUsers);
+
+    const returnUser: IUserResponse = UserResponseSchema.parse(updateUsers)
+
+    return returnUser
 }
 
 export default updateUserService

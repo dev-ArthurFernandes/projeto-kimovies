@@ -22,6 +22,12 @@ import {
     ICategory,
     ICategoryRequest
 } from './categories.interfaces'
+
+import {
+    IScheduleRequest,
+    IScheduleResponse
+} from './schedules.interfaces'
+
 export {
     IUser,
     IUserRequest,
@@ -33,5 +39,7 @@ export {
     ICategory,
     ICategoryRequest,
     IRealEstate,
-    IRealEstateRequest
+    IRealEstateRequest,
+    IScheduleRequest,
+    IScheduleResponse
 }

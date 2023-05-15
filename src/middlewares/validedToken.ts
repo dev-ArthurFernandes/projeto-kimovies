@@ -19,7 +19,7 @@ const validedToken = async (req: Request, res: Response, next: NextFunction): Pr
         }
 
         req.user = {
-            id: Number(decoded.id),
+            id: Number(decoded.sub),
             admin: decoded.admin
         }
     })
