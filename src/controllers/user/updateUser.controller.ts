@@ -1,17 +1,23 @@
 import { Request, Response } from 'express';
 import { updateUserService } from '../../services';
 import { IUserUpdateRequest } from '../../interfaces';
-
+import { AppError } from '../../AppError';
 
 const updateUserController = async (req: Request, res: Response): Promise<Response> => {
 
-    const userData: IUserUpdateRequest = req.body
+    if(req.user.admin === true || req.user.id === Number(req.params.id)){
 
-    const userId: number = parseInt(req.params.id)
+        const userData: IUserUpdateRequest = req.body
 
-    const udpatedUser = await updateUserService(userId, userData)
+        const userId: number = parseInt(req.params.id)
 
-    return res.status(201).json(udpatedUser)
+        const udpatedUser = await updateUserService(userData, userId)
+
+        return res.json(udpatedUser)
+
+    }else{
+        throw new AppError("Insufficient permission", 403)
+    }
 }
 
 export default updateUserController

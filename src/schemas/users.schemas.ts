@@ -16,7 +16,7 @@ const UserSchema = CreateUserSchema.extend({
     deletedAt: z.string().nullish()
 })
 
-const UpdateUserSchema = CreateUserSchema.omit({admin: true}).deepPartial()
+const UpdateUserSchema = CreateUserSchema.deepPartial()
 
 const UserResponseSchema = UserSchema.omit({password: true})
 
